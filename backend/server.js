@@ -3,6 +3,7 @@ require("dotenv").config()
 const db = require("./DB/db")
 const userRouter = require("./routes/userRouter")
 const categoryRouter = require("./routes/categoryRouter")
+const postRouter = require("./routes/postRouter")
 
 
 
@@ -11,6 +12,7 @@ app.use(express.json())
 
 app.use("/api/v1", userRouter)
 app.use("/api/v1", categoryRouter)
+app.use("/api/V1", postRouter)
 
 const port = process.env.SERVER_PORT || 3001
 

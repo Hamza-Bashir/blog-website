@@ -1,4 +1,5 @@
 const category = require("../model/categoryModel")
+const post = require("../model/postModel")
 const slugify = require("slugify")
 
 const addCategory = async (req,res)=>{
@@ -120,6 +121,8 @@ const deleteCategory = async (req,res)=>{
                 message:"Category not exist"
             })
         }
+
+        await post.deleteMany({category_id:c_id})
 
         await category.findByIdAndDelete(c_id)
 
