@@ -92,4 +92,80 @@ const updatePost = async (req,res)=>{
     }
 }
 
-module.exports = {addPost, getAllPost, getSinglePost, updatePost}
+
+const searchPost = async (req,res)=>{
+    try {
+        const {query} = req.query
+
+        if(!query){
+            return res.status(401).json({
+                message:"Search Query is required"
+            })
+        }
+
+        const searchQuery = {
+            $or:[
+                {title:{$regex:query}},
+                {content:{$regex:query}},
+                {tags:{$in:query.split(",")}}
+            ]
+        }
+
+        const posts = await post.find(searchQuery)
+        return res.status(200).json({
+            posts
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error:error.message
+        })
+    }
+}
+
+const paginationPost = async (req,res)=>{
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 5
+    const skip = (page - 1) * limit
+
+    try {
+        const posts = await post.find().skip(skip).limit(limit)
+
+        const totalPost = await post.countDocuments()
+
+        res.status(200).json({
+            page,
+            totalPages : Math.ceil(totalPost / limit),
+            totalPost,
+            posts
+        })
+    } catch (error) {
+        res.status(500).json({
+            error:error.message
+        })
+    }
+}
+
+
+const filterPost = async (req,res)=>{
+    try {
+        const filter = {}
+
+        if(req.query.title){
+            filter.title = {$regex:req.query.title}
+        }
+
+        const filterPost = await post.find(filter)
+
+        const totalPost = await post.countDocuments()
+        res.status(200).json({
+            totalPost,
+            filterPost
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error:error.message
+        })
+    }
+}
+
+module.exports = {addPost, getAllPost, getSinglePost, updatePost, searchPost, paginationPost, filterPost}
