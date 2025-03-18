@@ -4,6 +4,8 @@ const db = require("./DB/db")
 const userRouter = require("./routes/userRouter")
 const categoryRouter = require("./routes/categoryRouter")
 const postRouter = require("./routes/postRouter")
+const commentRouter = require("./routes/commentRouter")
+const reactionRouter = require("./routes/reactionRouter")
 
 
 
@@ -13,6 +15,8 @@ app.use(express.json())
 app.use("/api/v1", userRouter)
 app.use("/api/v1", categoryRouter)
 app.use("/api/V1", postRouter)
+app.use("/api/v1", commentRouter)
+app.use("/api/v1", reactionRouter)
 
 const port = process.env.SERVER_PORT || 3001
 
