@@ -14,6 +14,8 @@ const reactionSchema = new mongoose.Schema({
         type:mongoose.Types.ObjectId,
         ref:"post"
     }
+
+    
 })
 
 

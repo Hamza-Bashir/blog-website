@@ -44,3 +44,4 @@ const getAllComment = async (req,res)=>{
 }
 
 module.exports = {addComment, getAllComment}
+

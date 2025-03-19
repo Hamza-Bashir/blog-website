@@ -24,3 +24,4 @@ app.listen(port, ()=>{
     console.log(`Server start at port ${port} successfully`)
     db()
 })
+
