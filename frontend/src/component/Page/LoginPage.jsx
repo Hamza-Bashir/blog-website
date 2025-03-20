@@ -1,13 +1,14 @@
 import Navbar from "../Navbar";
-import Register from "../Register";
+import Login from "../Login";
 import Footer from "../Footer";
 
-function RegisterPage(){
+function LoginPage(){
     return <>
+    
     <Navbar/>
-    <Register/>
+    <Login/>
     <Footer/>
     </>
 }
 
-export default RegisterPage
+export default LoginPage
