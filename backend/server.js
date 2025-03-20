@@ -6,11 +6,13 @@ const categoryRouter = require("./routes/categoryRouter")
 const postRouter = require("./routes/postRouter")
 const commentRouter = require("./routes/commentRouter")
 const reactionRouter = require("./routes/reactionRouter")
+const cors = require("cors")
 
 
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.use("/api/v1", userRouter)
 app.use("/api/v1", categoryRouter)
