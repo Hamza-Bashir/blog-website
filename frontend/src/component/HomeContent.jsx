@@ -5,7 +5,7 @@ function HomeContent(){
 
   const {auth} = useContext(AuthContext)
     return <>
-    {auth.user?.username}
+    
     <div className="p-6 space-y-8">
       {/* Hero Section */}
       <div className="bg-blue-500 text-white p-12 rounded-lg shadow-md text-center">

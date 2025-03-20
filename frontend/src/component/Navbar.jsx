@@ -2,6 +2,7 @@ import { useState, useContext } from "react"; // Import useState for handling mo
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import logoPic from "../assets/logo.png"; // Make sure to specify the image file extension
+import { toast } from "react-toastify";
 
 function Navbar() {
     const { auth, setAuth } = useContext(AuthContext);
@@ -20,6 +21,8 @@ function Navbar() {
         // Clear localStorage for token and user data
         localStorage.removeItem("token"); // Make sure this key matches what you store in localStorage
         localStorage.removeItem("user"); // Same as above
+
+        toast.success("Logout successfully")
     };
 
     return (
