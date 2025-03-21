@@ -81,34 +81,42 @@ const getSingleCategory = async (req,res)=>{
 }
 
 
-const updateCategory = async (req,res)=>{
+const updateCategory = async (req, res) => {
     try {
-        const {slug} = req.params
-        const {name} = req.body
-        const existingCategory = await category.findOne({slug:slug})
-
-        if(!existingCategory){
-            return res.status(401).json({
-                message:"Category not exist"
-            })
-        }
-
-        const newSlug = slugify(name, {lower:true, strict:true})
-
-        const updated = await category.findOneAndUpdate({slug:slug}, {name:name, slug:newSlug}, {new:true})
-
-        
-        return res.status(200).json({
-            message:"Category updated successfully",
-            updated
-        })
+      const { slug } = req.params; // Get category slug from URL params
+      const { name } = req.body; // Get the new category name from the request body
+  
+      console.log('Received slug:', slug);  // Log slug for debugging
+  
+      // Find category by its slug
+      const existingCategory = await category.findOne({ slug: slug });
+  
+      if (!existingCategory) {
+        return res.status(401).json({
+          message: "Category does not exist",
+        });
+      }
+  
+      // If the category exists, update its name and slug
+      const newSlug = slugify(name, { lower: true, strict: true });
+  
+      const updatedCategory = await category.findOneAndUpdate(
+        { slug: slug }, // Find by the existing slug
+        { name: name, slug: newSlug }, // Update the name and slug
+        { new: true } // Return the updated category
+      );
+  
+      return res.status(200).json({
+        message: "Category updated successfully",
+        updated: updatedCategory, // Send back the updated category
+      });
     } catch (error) {
-        return res.status(500).json({
-            error:error.message
-        })
+      return res.status(500).json({
+        error: error.message,
+      });
     }
-}
-
+  };
+ 
 
 const deleteCategory = async (req,res)=>{
     try {

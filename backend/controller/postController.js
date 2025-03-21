@@ -25,7 +25,7 @@ const addPost = async (req,res)=>{
 
 const getAllPost = async (req,res)=>{
     try {
-        const allPost = await post.find({})
+        const allPost = await post.find({}).populate("user_id").populate("category_id")
 
         if(!allPost){
             return res.status(401).json({
@@ -150,15 +150,15 @@ const filterPost = async (req,res)=>{
     try {
         const filter = {}
 
-        if(req.query.title){
-            filter.title = {$regex:req.query.title}
+        if(req.query.category_id){
+            filter.category_id = req.query.category_id
         }
 
         const filterPost = await post.find(filter)
 
-        const totalPost = await post.countDocuments()
+        
         res.status(200).json({
-            totalPost,
+            
             filterPost
         })
     } catch (error) {

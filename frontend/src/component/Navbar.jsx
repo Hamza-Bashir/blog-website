@@ -1,10 +1,11 @@
 import { useState, useContext } from "react"; // Import useState for handling mobile menu state
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import logoPic from "../assets/logo.png"; // Make sure to specify the image file extension
 import { toast } from "react-toastify";
 
 function Navbar() {
+    const navigate = useNavigate()
     const { auth, setAuth } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // State to control the mobile menu visibility
 
@@ -23,6 +24,8 @@ function Navbar() {
         localStorage.removeItem("user"); // Same as above
 
         toast.success("Logout successfully")
+        navigate("/")
+        
     };
 
     return (
@@ -50,8 +53,9 @@ function Navbar() {
                             <li>
                                 <Link to="/" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Home</Link>
                             </li>
-                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">All Post</li>
-                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">My Post</li>
+                            <Link to="/all-post" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">All Post</Link>
+                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Post</li>
+                            <Link to="/create-category" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Category</Link>
                             <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer" onClick={handleLogout}>Logout</li>
                         </>
                     ) : (
@@ -59,7 +63,9 @@ function Navbar() {
                             <li>
                                 <Link to="/" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Home</Link>
                             </li>
-                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">All Post</li>
+                            <Link 
+                            to="/all-post"
+                            className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">All Post</Link>
                             <li>
                                 <Link to="/register" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Register</Link>
                             </li>
@@ -88,7 +94,9 @@ function Navbar() {
                             <li>
                                 <Link to="/" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Home</Link>
                             </li>
-                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Post</li>
+                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">All Post</li>
+                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Post</li>
+                            <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Category</li>
                             <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer" onClick={handleLogout}>Logout</li>
                         </>
                     ) : (
