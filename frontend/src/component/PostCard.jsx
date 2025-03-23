@@ -1,110 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+
 
 const PostCard = () => {
-  const [posts, setPosts] = useState([]); // Store all posts
-  const [filteredPosts, setFilteredPosts] = useState([]); // Store filtered posts
-  const [categories, setCategories] = useState([]); // Store categories
-  const [selectedCategory, setSelectedCategory] = useState(''); // Store selected category
-
-  // Fetch all posts
-  const fetchAllPosts = async () => {
-    const response = await axios.get('http://localhost:3000/api/v1/all-post');
-    setPosts(response.data.allPost); // Set all posts
-  };
-
-  // Fetch all categories for filtering
-  const fetchCategories = async () => {   
-    const response = await axios.get('http://localhost:3000/api/v1/all-category');
-    setCategories(response.data.allCategory); // Set categories
-  };
-
-  useEffect(() => {
-    fetchAllPosts();
-    fetchCategories();
-  }, []);
-
-  // Apply the filter based on selected category
-  const applyFilter = async () => {
-    
-    
-      const response = await axios.get('http://localhost:3000/api/v1/filter-post', {
-        params: { category_id: selectedCategory },
-      });
-      setFilteredPosts(response.data.filterPost); 
-    
-  };
-
-  
-
-  
-
   return (
-    <div className="flex  bg-gray-50">
-      {/* Filter Sidebar (Left Sidebar) */}
-      <aside className="w-1/4 bg-white p-8 rounded-xl shadow-xl">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6">Filter Posts</h2>
-  
-        {/* Category Filter */}
-        <div className="mb-6">
-          <label htmlFor="category" className="block text-gray-700 font-medium mb-2 text-lg">
-            Category
-          </label>
-          <select
-            id="category"
-            className="w-full p-4 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)} // Update selected category
-          >
-            <option value="">All Categories</option>
-            {categories.map((data) => (
-              <option key={data._id} value={data._id}>
-                {data.name}
-              </option>
-            ))}
-          </select>
-        </div>
-  
-        {/* Apply Filter Button */}
-        <button
-          onClick={applyFilter}
-          className="w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Apply Filter
-        </button>
-      </aside>
-  
-      {/* Post Cards Section (Right Content Area) */}
-      <div className="w-3/4 p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {/* Check if there are filtered posts */}
-        {posts.length > 0 ? (
-          posts.map((data) => (
-            <div key={data._id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition duration-200 ease-in-out">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">{data.title}</h3>
-              <p className="text-gray-600 mb-4">{data.content}</p>
-              <div className="flex items-center justify-between text-sm text-gray-500">
-                <div className="flex items-center">
-                  <span className="mr-2">By: {data.user_id.username}</span>
-                  <span className="mr-2">|</span>
-                  <span>Category: {data.category_id.name}</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="mr-2">👍 10</span>
-                  <span>👎 2</span>
-                </div>
-              </div>
+    <div className="p-6">
+      {/* Post Grid (6 per page) */}
+      <div className="grid grid-cols-3 gap-4">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="border rounded-lg p-4 shadow-md bg-white w-full max-w-xs">
+            <h3 className="text-md font-semibold truncate">Post Title {i + 1}</h3>
+            <p className="text-gray-600 text-sm line-clamp-2">
+              This is a short preview of the post content...
+            </p>
+            <div className="flex justify-between text-xs text-gray-500 mt-2">
+              <span>By Username</span>
+              <span className="bg-blue-100 text-blue-600 px-2 py-1 rounded">Category</span>
             </div>
-          ))
-        ) : (
-          <div className="w-full text-center text-xl text-gray-500">
-            No posts available.
+            <div className="flex items-center gap-3 mt-3 text-sm">
+              <button className="flex items-center gap-1 text-green-500">👍 <span>10</span></button>
+              <button className="flex items-center gap-1 text-red-500">👎 <span>2</span></button>
+            </div>
+
+            {/* Comment Section */}
+            <div className="mt-4">
+              <h4 className="text-sm font-semibold">Comments</h4>
+              <div className="bg-gray-100 p-2 rounded mt-1 text-xs">
+                <p><span className="font-bold">User1:</span> Great post!</p>
+                <p><span className="font-bold">User2:</span> Thanks for sharing!</p>
+              </div>
+              <input 
+                type="text" 
+                placeholder="Add a comment..." 
+                className="mt-2 w-full border p-1 rounded text-xs focus:ring focus:ring-blue-300 outline-none"
+              />
+            </div>
           </div>
-        )}
+        ))}
+      </div>
+
+      {/* Pagination Controls (UI-Only) */}
+      <div className="flex justify-center items-center mt-6 space-x-2">
+        <button className="px-3 py-2 bg-gray-300 text-gray-700 rounded flex items-center">
+          <ChevronLeftIcon className="h-5 w-5" />
+        </button>
+        <span className="text-gray-700 text-sm">Page 1 of 3</span>
+        <button className="px-3 py-2 bg-gray-300 text-gray-700 rounded flex items-center">
+          <ChevronRightIcon className="h-5 w-5" />
+        </button>
       </div>
     </div>
   );
-  
-  
 };
 
 export default PostCard;
