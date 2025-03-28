@@ -93,25 +93,33 @@ function CreateCategory() {
               </tr>
             </thead>
             <tbody>
-              {categories.map((data) => (
-                <tr key={data._id} className="border-b">
-                  <td className="py-3 px-6 text-gray-700">{data.name}</td>
-                  <td className="py-3 px-6 text-gray-700">
-                    <button
-                      className="text-blue-500 hover:text-blue-700 mr-3 focus:outline-none"
-                      onClick={() => handleEdit(data)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="text-red-500 hover:text-red-700 focus:outline-none"
-                      onClick={() => handleDelete(data._id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {categories.length > 0 ? (
+      categories.map((data) => (
+        <tr key={data._id} className="border-b">
+          <td className="py-3 px-6 text-gray-700">{data.name}</td>
+          <td className="py-3 px-6 text-gray-700">
+            <button
+              className="text-blue-500 hover:text-blue-700 mr-3 focus:outline-none"
+              onClick={() => handleEdit(data)}
+            >
+              Edit
+            </button>
+            <button
+              className="text-red-500 hover:text-red-700 focus:outline-none"
+              onClick={() => handleDelete(data._id)}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))
+    ) : (
+      <tr>
+        <td colSpan="2" className="text-gray-500 text-center py-4">
+          No categories exist.
+        </td>
+      </tr>
+    )}
             </tbody>
           </table>
         </div>

@@ -40,7 +40,7 @@ const CreatePost = () => {
   const {id} = useParams()
   const handleSubmit = async ()=>{
     
-    console.log(id)
+    
     const response = await axios.post(`http://localhost:3000/api/v1/add-post/${id}`, {
       ...postData,
       user_id:id

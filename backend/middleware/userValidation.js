@@ -40,3 +40,8 @@ const loginValidation = joi.object({
 
 
 module.exports = {userValidation, loginValidation}
+
+
+
+
+

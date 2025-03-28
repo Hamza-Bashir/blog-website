@@ -54,7 +54,7 @@ function Navbar() {
                                 <Link to="/" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Home</Link>
                             </li>
                             <Link to="/all-post" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">All Post</Link>
-                            <Link to={`create-post/${auth.user._id}`} className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Post</Link>
+                            <Link to={`/create-post/${auth.user._id}`} className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Post</Link>
                             <Link to="/create-category" className="hover:text-blue-400 transition-colors duration-300 cursor-pointer">Create Category</Link>
                             <li className="hover:text-blue-400 transition-colors duration-300 cursor-pointer" onClick={handleLogout}>Logout</li>
                         </>
