@@ -124,7 +124,7 @@ const searchPost = async (req,res)=>{
 
 const paginationPost = async (req,res)=>{
     const page = parseInt(req.query.page) || 1
-    const limit = parseInt(req.query.limit) || 5
+    const limit = parseInt(req.query.limit) || 2
     const skip = (page - 1) * limit
 
     try {
@@ -154,7 +154,7 @@ const filterPost = async (req,res)=>{
             filter.category_id = req.query.category_id
         }
 
-        const filterPost = await post.find(filter)
+        const filterPost = await post.find(filter).populate("user_id").populate("category_id")
 
         
         res.status(200).json({
