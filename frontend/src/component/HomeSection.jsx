@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import logo from "../assets/logo.png"
 
 function HomeSection(){
@@ -10,12 +11,12 @@ function HomeSection(){
       A platform where you can create your own blog and explore others' posts on web development, tech, and more.
     </p>
     <div className="space-x-4">
-      <button className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
+      <Link to="/login" className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
         Create Your Blog
-      </button>
-      <button className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
+      </Link>
+      <Link to="/all-post" className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
         View Blogs
-      </button>
+      </Link>
     </div>
   </div>
   
