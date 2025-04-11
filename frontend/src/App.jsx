@@ -1,10 +1,21 @@
-import Navbar from "./component/Navbar"
-
-
+import HomePage from "./page/HomePage"
+import {Routes, Route} from "react-router-dom"
+import RegisterPage from "./page/RegisterPage"
+import LoginPage from "./page/LoginPage"
+import CategoryPage from "./page/CategoryPage"
+import PostFormPage from "./page/PostFormPage"
+import PostCardPage from "./page/PostCardPage"
 function App(){
   return <>
-  <Navbar/>
-  
+  <Routes>
+    <Route path="/" element={<HomePage/>}/>
+    <Route path="/register" element={<RegisterPage/>}/>
+    <Route path="/login" element={<LoginPage/>}/>
+    <Route path="/category" element={<CategoryPage/>}/>
+    <Route path="/create-post" element={<PostFormPage/>}/>
+    <Route path="/all-post" element={<PostCardPage/>}/>
+  </Routes>
+ 
   </>
 }
 
