@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import logo from "../assets/logo.png"
+import {useUser} from "../store/userStore"
 
 function HomeSection(){
 
+  const {user} = useUser()
     return <>
     <section className="flex flex-col md:flex-row items-center justify-between px-8 py-16 bg-cyan-100 h-screen">
   <div className="md:w-1/2 space-y-6">
@@ -11,9 +13,14 @@ function HomeSection(){
       A platform where you can create your own blog and explore others' posts on web development, tech, and more.
     </p>
     <div className="space-x-4">
-      <Link to="/login" className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
+      {user.token ? ( <Link to="/create-post" className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
+        Create Your Blog
+      </Link>) : (
+        <Link to="/login" className="bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
         Create Your Blog
       </Link>
+      )}
+      
       <Link to="/all-post" className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-all duration-300">
         View Blogs
       </Link>
