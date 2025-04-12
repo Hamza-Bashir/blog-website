@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
-
+import {useUser} from "../store/userStore"
 function LoginUser(){
+
+    const {login} = useUser()
     return (
     <div className="bg-cyan-100 h-screen flex justify-center items-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
