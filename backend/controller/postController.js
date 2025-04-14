@@ -25,7 +25,7 @@ const addPost = async (req,res)=>{
 
 const getAllPost = async (req,res)=>{
     try {
-        const allPost = await post.find({}).populate("user_id").populate("category_id")
+        const allPost = await post.find({}).populate("user_id").populate("category_id").sort({createdAt:-1})
 
         if(!allPost){
             return res.status(401).json({

@@ -12,8 +12,8 @@ function App(){
     <Route path="/register" element={<RegisterPage/>}/>
     <Route path="/login" element={<LoginPage/>}/>
     <Route path="/category" element={<CategoryPage/>}/>
-    <Route path="/create-post" element={<PostFormPage/>}/>
-    <Route path="/all-post" element={<PostCardPage/>}/>
+    <Route path="/create-post/:id" element={<PostFormPage/>}/>
+    <Route path="/all-post/:id" element={<PostCardPage/>}/>
   </Routes>
  
   </>

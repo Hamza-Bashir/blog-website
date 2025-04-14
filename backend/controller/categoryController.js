@@ -86,8 +86,7 @@ const updateCategory = async (req, res) => {
       const { slug } = req.params; // Get category slug from URL params
       const { name } = req.body; // Get the new category name from the request body
   
-      console.log('Received slug:', slug);  // Log slug for debugging
-  
+      
       // Find category by its slug
       const existingCategory = await category.findOne({ slug: slug });
   

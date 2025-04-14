@@ -37,11 +37,13 @@ function Navbar() {
                 <ul className="hidden md:flex gap-4 font-bold">
                     
                     <Link to="/" className="cursor-pointer hover:underline hover:text-blue-700">Home</Link>
-                    <Link to="/all-post" className="cursor-pointer hover:underline hover:text-blue-700">All Blog</Link>
-                    <Link to="/create-post" className="cursor-pointer hover:underline hover:text-blue-700">Create Post</Link>
-                    <Link to="/category" className="cursor-pointer hover:underline hover:text-blue-700">Manage Category</Link>
+                    
                     {user.token ? (
                         <>
+                        <Link to={`/all-post/${user.user._id}`} className="cursor-pointer hover:underline hover:text-blue-700">All Blog</Link>
+                    
+                    <Link to="/category" className="cursor-pointer hover:underline hover:text-blue-700">Manage Category</Link>
+                        <Link to={`/create-post/${user.user._id}`} className="cursor-pointer hover:underline hover:text-blue-700">Create Post</Link>
                         <button className="cursor-pointer hover:underline hover:text-blue-700" onClick={handleLogout}>Logout</button>
                         </>
                     ) : (
@@ -62,7 +64,7 @@ function Navbar() {
                     <Link to="/" className="cursor-pointer hover:underline hover:text-blue-700">Home</Link>
                     <Link to="/all-post" className="cursor-pointer hover:underline hover:text-blue-700">All Blog</Link>
                     <Link to="/create-post" className="cursor-pointer hover:underline hover:text-blue-700">Create Post</Link>
-                    <Link to="/category" className="cursor-pointer hover:underline hover:text-blue-700">Manage Category</Link>
+                    <Link to={`/create-post/${user.user._id}`} className="cursor-pointer hover:underline hover:text-blue-700">Manage Category</Link>
 
                     {user.token ? (
                         <Link className="cursor-pointer hover:underline hover:text-blue-700" onClick={handleLogout}>Logout</Link>

@@ -21,7 +21,7 @@ function LoginUser(){
     const user = response.data.existingUser
     login(token, user)
     toast.success(response.data.message)
-    navigate("/create-post")
+    navigate(`/`)
   }
 
 
