@@ -13,7 +13,7 @@ function LoginUser(){
   const handleSubmit = async (e)=>{
     e.preventDefault()
     
-    const response = await axios.post("http://localhost:3000/api/v1/login", {
+    const response = await axios.post("https://shrouded-giant-shape.glitch.me/api/v1/login", {
       email,
       password
     })
