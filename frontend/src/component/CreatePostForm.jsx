@@ -13,7 +13,7 @@ function CreatePostForm() {
   const {id} = useParams()
 
   const getAllCategory = async ()=>{
-    const response = await axios.get("https://shrouded-giant-shape.glitch.me/api/v1/all-category")
+    const response = await axios.get("http://localhost:3000/api/v1/all-category")
     setCategoryList(response.data.allCategory)
   }
 
@@ -25,7 +25,7 @@ function CreatePostForm() {
 
   const handleSubmit = async (e)=>{
     e.preventDefault()
-    const response = await axios.post(`https://shrouded-giant-shape.glitch.me/api/v1/add-post/${id}`, {
+    const response = await axios.post(`http://localhost:3000/api/v1/add-post/${id}`, {
       title,
       content,
       category_id:category,

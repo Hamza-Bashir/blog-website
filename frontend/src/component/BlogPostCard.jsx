@@ -10,7 +10,7 @@ function BlogPostCards() {
   const fetchAllPost = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://shrouded-giant-shape.glitch.me/api/v1/all-post");
+      const response = await axios.get("http://localhost:3000/api/v1/all-post");
       setAllPost(response.data.allPost);
       setLoading(false);
     } catch (error) {
