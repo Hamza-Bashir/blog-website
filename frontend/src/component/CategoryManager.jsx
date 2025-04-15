@@ -13,7 +13,7 @@ function CategoryManager() {
 
   const getAllCategory = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/all-category");
+      const response = await axios.get("https://shrouded-giant-shape.glitch.me/api/v1/all-category");
       setCategory(response.data.allCategory);
     } catch (error) {
       toast.error("Failed to load categories");
@@ -43,13 +43,13 @@ function CategoryManager() {
       if (editMode) {
         // UPDATE mode
         const response = await axios.put(
-          `http://localhost:3000/api/v1/update-category/${editSlug}`,
+          `https://shrouded-giant-shape.glitch.me/api/v1/update-category/${editSlug}`,
           { name }
         );
         toast.success(response.data.message);
       } else {
         // ADD mode
-        const response = await axios.post("http://localhost:3000/api/v1/add-category", { name });
+        const response = await axios.post("https://shrouded-giant-shape.glitch.me/api/v1/add-category", { name });
         toast.success(response.data.message);
       }
 
@@ -70,7 +70,7 @@ function CategoryManager() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/v1/delete-category/${id}`);
+      const response = await axios.delete(`https://shrouded-giant-shape.glitch.me/api/v1/delete-category/${id}`);
       toast.success(response.data.message);
       getAllCategory();
     } catch (error) {

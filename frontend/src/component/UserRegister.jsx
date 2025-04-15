@@ -19,7 +19,7 @@ function UserRegister() {
       password
     }
 
-    const response = await axios.post("http://localhost:3000/api/v1/register", newUser)
+    const response = await axios.post("https://shrouded-giant-shape.glitch.me/api/v1/register", newUser)
     toast.success(response.data.message)
     navigate("/login")
   }
